@@ -49,7 +49,7 @@ def AnomalyDetection():
             """### **Seasonal Auto Regressive Integrated Moving Average (SARIMA) Model**""")
 
     st.sidebar.info("""
-        [More information](http://gonzalezmaw.pythonanywhere.com/)
+        [Short summary of the applicability of the method or model]
         """)
 
     uploaded_file = st.file_uploader("Choose a CSV file")
