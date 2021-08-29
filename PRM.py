@@ -22,7 +22,7 @@ def PRM():  # Polynomial Regresssion Method
         st.sidebar.write("Polynomial grade: ", polynomial_grade)
 
         st.sidebar.info("""
-                [More information](http://gonzalezmaw.pythonanywhere.com/)
+                [Short summary of the applicability of the method or model]
                 """)
         uploaded_file = st.file_uploader("Choose a CSV file")
         if uploaded_file is not None:
