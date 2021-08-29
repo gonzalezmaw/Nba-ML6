@@ -28,18 +28,13 @@ from PIL import Image
 
 img = Image.open('NubilaIcono.png')
 
-st.set_page_config(page_title="Nubyla", page_icon=img)
+st.set_page_config(page_title="nubyla 2021", page_icon=img)
 st.title("Machine Learning for Everyone")
 
 st.sidebar.write("""
-# **nubyla**
+# **nubyla 2021**
 
 """)
-
-
-# options = st.multiselect(
-# 'What are your favorite colors',['Green', 'Yellow', 'Red', 'Blue'],['Yellow', 'Red'])
-#st.write('You selected:', options)
 
 
 CategorySelect_name = st.sidebar.selectbox(
