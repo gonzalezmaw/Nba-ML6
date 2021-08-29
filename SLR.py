@@ -7,7 +7,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from streamlit import caching
 
-
 def SLR():  # Simple Linear Regression
     try:
         parameter_test_size = st.sidebar.slider(
