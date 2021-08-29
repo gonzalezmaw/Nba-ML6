@@ -15,7 +15,6 @@ from sklearn import preprocessing
 from random import randint
 from streamlit import caching
 
-
 def simple_scatter_plot(x_data, y_data, output_filename, title_name, x_axis_label, y_axis_label):
 
     figure, ax = plt.subplots()
