@@ -36,7 +36,6 @@ st.sidebar.write("""
 
 """)
 
-
 CategorySelect_name = st.sidebar.selectbox(
     "Select a category", ("Regression", "Classification", "Clustering", "Ranking", "Bigdata Analysis", "Time Series", "Anomaly Detection"))
 
