@@ -78,7 +78,7 @@ def Pyspark(RankingMethod):
         st.sidebar.write("Test size: ", parameter_test_size)
 
         st.sidebar.info("""
-                        [More information](http://gonzalezmaw.pythonanywhere.com/)
+                        [Short summary of the applicability of the method or model]
                         """)
 
         st.write('/Users/MarlonGonzalez/Documents/MachineLearning_2021/2008.csv')
