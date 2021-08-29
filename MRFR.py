@@ -40,7 +40,7 @@ def MRFR():  # Multiple Random Forest Regressor
         st.sidebar.write("n  estimators: ", parameter_n_estimators)
 
         st.sidebar.info("""
-                [More information](http://gonzalezmaw.pythonanywhere.com/)
+                [Short summary of the applicability of the method or model]
                 """)
         uploaded_file = st.file_uploader("Choose a CSV file")
         if uploaded_file is not None:
