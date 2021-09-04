@@ -46,11 +46,11 @@ if CategorySelect_name == "Regression":
 
     if modelSelectSubcategory_name == "Single Variable Regression":
         modelSelect_name = st.sidebar.selectbox(
-            "Select a model", ("Simple Linear Regression", "Polynomial Regression", "Random Forest Regressor"))
+            "Select the algorithm", ("Simple Linear Regression", "Polynomial Regression", "Random Forest Regressor"))
 
     elif modelSelectSubcategory_name == "Multiple Variable Regression":
 
-        modelSelect_name = st.sidebar.selectbox("Select a model", ("Multiple Linear Regressor", "Support Vector Machines Regressor", "Bayesian Ridge Regressor",
+        modelSelect_name = st.sidebar.selectbox("Select the algorithm", ("Multiple Linear Regressor", "Support Vector Machines Regressor", "Bayesian Ridge Regressor",
                                                                    "Decision Tree Regressor", "Extra Trees Regressor", "Random Forest Regressor", "K-Nearest Neighbors Regressor", "Gradient Boosting Regressor", "Extreme Gradient Boosting Regressor", "Gaussian Process Regressor", "Stochastic Gradient Descent Regressor",
                                                                    "Light Gradient Boosting Machine Regressor", "CatBoost Regressor", "AdaBoost Regressor", "Bagging Regressor", "Passive Aggressive Regressor",
                                                                    "Elastic Net Regressor", "Lasso Regressor", "Ridge Regressor", "Huber Regressor", "Kernel Ridge Regressor",
@@ -58,7 +58,7 @@ if CategorySelect_name == "Regression":
                                                                    "Lasso Least Angle Regressor", "Automatic Relevance Determination Regressor", "Random Sample Consensus Regressor", "Perceptron Regressor", "Natural Gradient Boosting Regressor", "Neural Network Regression"))
 
 elif CategorySelect_name == "Classification":
-    modelSelect_name = st.sidebar.selectbox("Select a model", ("Random Forest Classifier", "Support Vector Machines Classifier", "Logistic Regression Classifier", "Naive Bayes Classifier", "Decision Tree Classifier", "Extra Trees Classifier",
+    modelSelect_name = st.sidebar.selectbox("Select the algorithm", ("Random Forest Classifier", "Support Vector Machines Classifier", "Logistic Regression Classifier", "Naive Bayes Classifier", "Decision Tree Classifier", "Extra Trees Classifier",
                                                                "K-Nearest Neighbors Classifier", "Gradient Boosting Classifier", "Extreme Gradient Boosting Classifier", "Gaussian Process Classifier", "Stochastic Gradient Descent Classifier",
                                                                "Light Gradient Boosting Machine Classifier", "CatBoost Classifier", "AdaBoost Classifier", "Bagging Classifier", "Passive Aggressive Classifier",
                                                                "Linear Discriminant Analysis Classifier", "Quadratic Discriminant Analysis Classifier", "Linear Support Vector Machine Classifier", "Ridge Classifier", "Natural Gradient Boosting Classifier",
@@ -66,11 +66,11 @@ elif CategorySelect_name == "Classification":
 
 elif CategorySelect_name == "Clustering":
     modelSelect_name = st.sidebar.selectbox(
-        "Select a model", ("K-Means Clustering", "Hierarchical Clustering", "Spectral Clustering"))
+        "Select the algorithm", ("K-Means Clustering", "Hierarchical Clustering", "Spectral Clustering"))
 
 elif CategorySelect_name == "Ranking":
     modelSelect_name = st.sidebar.selectbox(
-        "Select a model", ("Quick Comparison Regressors", "Quick Comparison Classifiers"))
+        "Select a method", ("Quick Comparison Regressors", "Quick Comparison Classifiers"))
 
 elif CategorySelect_name == "Bigdata Analysis":
     modelSelect_name = "Bigdata Analysis"
@@ -766,7 +766,7 @@ elif modelSelect_name == "Bigdata Analysis":
         ## **Bigdata - Regression Analysis**
 
         """)
-        selectModelRegressor = st.sidebar.selectbox("Select a model", ("Linear Regressor", "Generalized Linear Regressor", "Decision Tree Regressor",
+        selectModelRegressor = st.sidebar.selectbox("Select the algorithm", ("Linear Regressor", "Generalized Linear Regressor", "Decision Tree Regressor",
                                                                        "Random Forest Regressor", "Gradient-Boosted Tree Regressor"))
 
         if selectModelRegressor == "Linear Regressor":
@@ -807,7 +807,7 @@ elif modelSelect_name == "Bigdata Analysis":
         ## **Bigdata - Classification Analysis**
 
         """)
-        selectModelClassifier = st.sidebar.selectbox("Select a model", ("Decision Tree Classifier", "Logistic Regression Classifier",
+        selectModelClassifier = st.sidebar.selectbox("Select the algorithm", ("Decision Tree Classifier", "Logistic Regression Classifier",
                                                                         "Random Forest Classifier", "Navy Bayes Classifier"))
 
         if selectModelClassifier == "Decision Tree Classifier":
@@ -861,7 +861,7 @@ elif modelSelect_name == "Bigdata Analysis":
 
         """)
         selectModelClustering = st.sidebar.selectbox(
-            "Select a model", ("K-Means", "Gaussian Mixture"))
+            "Select the algorithm", ("K-Means", "Gaussian Mixture"))
 
         if selectModelClustering == "K-Means":
 
