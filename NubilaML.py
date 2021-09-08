@@ -17,10 +17,10 @@ from QuickRegressors import QuickRegressors
 from ClassifierModels import ClassifierModels
 from RegressorModels import RegressorModels
 
-#from Pyspark import Pyspark
-#from RegressorsPyspark import RegressorsPyspark
-#from ClassifiersPyspark import ClassifiersPyspark
-#from ClusteringPyspark import ClusteringPyspark
+from Pyspark import Pyspark
+from RegressorsPyspark import RegressorsPyspark
+from ClassifiersPyspark import ClassifiersPyspark
+from ClusteringPyspark import ClusteringPyspark
 from TimeSeries import TimeSeries
 from AnomalyDetection import AnomalyDetection
 
@@ -28,45 +28,69 @@ from PIL import Image
 
 img = Image.open('NubilaIcono.png')
 
-st.set_page_config(page_title="nubyla 2021", page_icon=img)
+st.set_page_config(page_title="Nubyla", page_icon=img)
 st.title("Machine Learning for Everyone")
 
 st.sidebar.write("""
-# **nubyla 2021**
+# **nubyla**
 
 """)
 
+# options = st.multiselect(
+# 'What are your favorite colors',['Green', 'Yellow', 'Red', 'Blue'],['Yellow', 'Red'])
+#st.write('You selected:', options)
+
+
 CategorySelect_name = st.sidebar.selectbox(
-    "Select a category", ("Regression", "Classification", "Clustering", "Ranking", "Bigdata Analysis", "Time Series", "Anomaly Detection"))
+    "Select a category", ("Regression", "Classification", "Clustering", "Ranking", "Time Series", "Anomaly Detection"))
 
 if CategorySelect_name == "Regression":
-
-    modelSelectSubcategory_name = st.sidebar.selectbox(
-        "Select a subcategory", ("Single Variable Regression", "Multiple Variable Regression"))
-
-    if modelSelectSubcategory_name == "Single Variable Regression":
-        modelSelect_name = st.sidebar.selectbox(
-            "Select the algorithm", ("Simple Linear Regression", "Polynomial Regression", "Random Forest Regressor"))
-
-    elif modelSelectSubcategory_name == "Multiple Variable Regression":
-
-        modelSelect_name = st.sidebar.selectbox("Select the algorithm", ("Multiple Linear Regressor", "Support Vector Machines Regressor", "Bayesian Ridge Regressor",
-                                                                   "Decision Tree Regressor", "Extra Trees Regressor", "Random Forest Regressor", "K-Nearest Neighbors Regressor", "Gradient Boosting Regressor", "Extreme Gradient Boosting Regressor", "Gaussian Process Regressor", "Stochastic Gradient Descent Regressor",
-                                                                   "Light Gradient Boosting Machine Regressor", "CatBoost Regressor", "AdaBoost Regressor", "Bagging Regressor", "Passive Aggressive Regressor",
-                                                                   "Elastic Net Regressor", "Lasso Regressor", "Ridge Regressor", "Huber Regressor", "Kernel Ridge Regressor",
-                                                                   "Tweedie Regressor", "TheilSen Regressor", "Orthogonal Matching Pursuit Regressor", "Histogram Gradient Boosting Regressor", "Least Angle Regressor",
-                                                                   "Lasso Least Angle Regressor", "Automatic Relevance Determination Regressor", "Random Sample Consensus Regressor", "Perceptron Regressor", "Natural Gradient Boosting Regressor", "Neural Network Regression"))
+    OptimizeBigData = st.sidebar.checkbox('Optimize for Big Data')
 
 elif CategorySelect_name == "Classification":
-    modelSelect_name = st.sidebar.selectbox("Select the algorithm", ("Random Forest Classifier", "Support Vector Machines Classifier", "Logistic Regression Classifier", "Naive Bayes Classifier", "Decision Tree Classifier", "Extra Trees Classifier",
-                                                               "K-Nearest Neighbors Classifier", "Gradient Boosting Classifier", "Extreme Gradient Boosting Classifier", "Gaussian Process Classifier", "Stochastic Gradient Descent Classifier",
-                                                               "Light Gradient Boosting Machine Classifier", "CatBoost Classifier", "AdaBoost Classifier", "Bagging Classifier", "Passive Aggressive Classifier",
-                                                               "Linear Discriminant Analysis Classifier", "Quadratic Discriminant Analysis Classifier", "Linear Support Vector Machine Classifier", "Ridge Classifier", "Natural Gradient Boosting Classifier",
-                                                               "Neural Network Classification"))
+    OptimizeBigData = st.sidebar.checkbox('Optimize for Big Data')
 
 elif CategorySelect_name == "Clustering":
-    modelSelect_name = st.sidebar.selectbox(
-        "Select the algorithm", ("K-Means Clustering", "Hierarchical Clustering", "Spectral Clustering"))
+    OptimizeBigData = st.sidebar.checkbox('Optimize for Big Data')
+elif CategorySelect_name == "Ranking":
+    OptimizeBigData = st.sidebar.checkbox('Optimize for Big Data')
+else:
+    OptimizeBigData = False
+
+
+if OptimizeBigData == False and CategorySelect_name == 'Regression':
+
+    if CategorySelect_name == "Regression":
+        modelSelect_name = ""
+
+        modelSelectSubcategory_name = st.sidebar.selectbox(
+            "Select a subcategory", ("Single Variable Regression", "Multiple Variable Regression"))
+
+        if modelSelectSubcategory_name == "Single Variable Regression":
+            modelSelect_name = st.sidebar.selectbox(
+                "Select an algorithm", ("Simple Linear Regression", "Polynomial Regression", "Random Forest Regressor"))
+
+        elif modelSelectSubcategory_name == "Multiple Variable Regression":
+
+            modelSelect_name = st.sidebar.selectbox("Select an algorithm", ("Multiple Linear Regressor", "Support Vector Machines Regressor", "Bayesian Ridge Regressor",
+                                                                            "Decision Tree Regressor", "Extra Trees Regressor", "Random Forest Regressor", "K-Nearest Neighbors Regressor", "Gradient Boosting Regressor", "Extreme Gradient Boosting Regressor", "Gaussian Process Regressor", "Stochastic Gradient Descent Regressor",
+                                                                            "Light Gradient Boosting Machine Regressor", "CatBoost Regressor", "AdaBoost Regressor", "Bagging Regressor", "Passive Aggressive Regressor",
+                                                                            "Elastic Net Regressor", "Lasso Regressor", "Ridge Regressor", "Huber Regressor", "Kernel Ridge Regressor",
+                                                                            "Tweedie Regressor", "TheilSen Regressor", "Orthogonal Matching Pursuit Regressor", "Histogram Gradient Boosting Regressor", "Least Angle Regressor",
+                                                                            "Lasso Least Angle Regressor", "Automatic Relevance Determination Regressor", "Random Sample Consensus Regressor", "Perceptron Regressor", "Natural Gradient Boosting Regressor", "Neural Network Regression"))
+
+elif OptimizeBigData == False and CategorySelect_name == 'Classification':
+    if CategorySelect_name == "Classification":
+        modelSelect_name = st.sidebar.selectbox("Select an algorithm", ("Random Forest Classifier", "Support Vector Machines Classifier", "Logistic Regression Classifier", "Naive Bayes Classifier", "Decision Tree Classifier", "Extra Trees Classifier",
+                                                                        "K-Nearest Neighbors Classifier", "Gradient Boosting Classifier", "Extreme Gradient Boosting Classifier", "Gaussian Process Classifier", "Stochastic Gradient Descent Classifier",
+                                                                        "Light Gradient Boosting Machine Classifier", "CatBoost Classifier", "AdaBoost Classifier", "Bagging Classifier", "Passive Aggressive Classifier",
+                                                                        "Linear Discriminant Analysis Classifier", "Quadratic Discriminant Analysis Classifier", "Linear Support Vector Machine Classifier", "Ridge Classifier", "Natural Gradient Boosting Classifier",
+                                                                        "Neural Network Classification"))
+
+elif OptimizeBigData == False and CategorySelect_name == 'Clustering':
+    if CategorySelect_name == "Clustering":
+        modelSelect_name = st.sidebar.selectbox(
+            "Select an algorithm", ("K-Means Clustering", "Hierarchical Clustering", "Spectral Clustering"))
 
 elif CategorySelect_name == "Ranking":
     modelSelect_name = st.sidebar.selectbox(
@@ -99,796 +123,806 @@ elif CategorySelect_name == "Anomaly Detection":
 #                       "Bigdata Analysis", "Time Series", "Anomaly Detection"))
 
 
-if modelSelect_name == "Simple Linear Regression":
-    st.write("""
-        ## **Simple Linear Regression Model**
-        """)
-    st.write("""
-    ### **Simple Regression Method**
-    """)
-    SLR()
-
-elif modelSelect_name == "Multiple Linear Regressor":
-    st.write("""
-        ## **Multiple Linear Regression Model**
-        """)
-
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
-
-elif modelSelect_name == "Support Vector Machines Regressor":
-    st.write("""
-        ## **Support Vector Machines Regression Model**
-        """)
-
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
-
-elif modelSelect_name == "Bayesian Ridge Regressor":
-    st.write("""
-        ## **Bayesian Ridge Regression Model**
-        """)
-
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
-
-elif modelSelect_name == "Decision Tree Regressor":
-    st.write("""
-        ## **Decision Tree Regression Model**
-        """)
-
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
-
-elif modelSelect_name == "Extra Trees Regressor":
-    st.write("""
-        ## **Extra Trees Regression Model**
-        """)
-
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
-
-elif modelSelect_name == "Random Forest Regressor":
-    st.write("""
-        ## **Random Forest Regression Model**
-        """)
-    if modelSelectSubcategory_name == "Single Variable Regression":
+if OptimizeBigData == False and CategorySelect_name == 'Regression':
+    if modelSelect_name == "Simple Linear Regression":
         st.write("""
-                ### **Simple Regression Method**
-                """)
-        RFR()
-
-    elif modelSelectSubcategory_name == "Multiple Variable Regression":
+            ## **Simple Linear Regression**
+            """)
         st.write("""
-                ### **Multiple Regression Method**
-                """)
-        RegressorModels(modelSelectSubcategory_name)
-
-
-elif modelSelect_name == "Gradient Boosting Regressor":
-    st.write("""
-        ## **Gradient Boosting Regression Model**
+        ### **Simple Regression Method**
         """)
-    st.write("""
-    ### **Multivariate Regression Method**
-    """)
-    RegressorModels(modelSelect_name)
+        SLR()
 
-elif modelSelect_name == "Extreme Gradient Boosting Regressor":
-    st.write("""
-        ## **Extreme Gradient Boosting Regression Model**
-        """)
-    st.write("""
-    ### **Multivariate Regression Method**
-    """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Multiple Linear Regressor":
+        st.write("""
+            ## **Multiple Linear Regressor**
+            """)
 
-elif modelSelect_name == "Gaussian Process Regressor":
-    st.write("""
-        ## **Gaussian Process Regression Model**
-        """)
-    st.write("""
-    ### **Multivariate Regression Method**
-    """)
-    RegressorModels(modelSelect_name)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-elif modelSelect_name == "Stochastic Gradient Descent Regressor":
-    st.write("""
-        ## **Stochastic Gradient Descent Regression Model**
-        """)
-    st.write("""
-    ### **Multivariate Regression Method**
-    """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Support Vector Machines Regressor":
+        st.write("""
+            ## **Support Vector Machines Regressor**
+            """)
 
-elif modelSelect_name == "K-Nearest Neighbors Regressor":
-    st.write("""
-        ## **K-Nearest Neighbors Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Bayesian Ridge Regressor":
+        st.write("""
+            ## **Bayesian Ridge Regressor**
+            """)
 
-elif modelSelect_name == "Light Gradient Boosting Machine Regressor":
-    st.write("""
-        ## **Light Gradient Boosting Machine Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Decision Tree Regressor":
+        st.write("""
+            ## **Decision Tree Regressor**
+            """)
 
-elif modelSelect_name == "CatBoost Regressor":
-    st.write("""
-        ## **CatBoost Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Extra Trees Regressor":
+        st.write("""
+            ## **Extra Trees Regressor**
+            """)
 
-elif modelSelect_name == "AdaBoost Regressor":
-    st.write("""
-        ## **AdaBoost Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Random Forest Regressor":
+        st.write("""
+            ## **Random Forest Regressor**
+            """)
+        if modelSelectSubcategory_name == "Single Variable Regression":
+            st.write("""
+                    ### **Simple Regression Method**
+                    """)
+            RFR()
 
-elif modelSelect_name == "Bagging Regressor":
-    st.write("""
-        ## **Bagging Regression Model**
-        """)
+        elif modelSelectSubcategory_name == "Multiple Variable Regression":
+            st.write("""
+                    ### **Multiple Regression Method**
+                    """)
+            RegressorModels(modelSelectSubcategory_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
+    elif modelSelect_name == "Gradient Boosting Regressor":
+        st.write("""
+            ## **Gradient Boosting Regressor**
+            """)
+        st.write("""
+        ### **Multivariate Regression Method**
         """)
-    RegressorModels(modelSelect_name)
+        RegressorModels(modelSelect_name)
 
-elif modelSelect_name == "Passive Aggressive Regressor":
-    st.write("""
-        ## **Passive Aggressive Regression Model**
+    elif modelSelect_name == "Extreme Gradient Boosting Regressor":
+        st.write("""
+            ## **Extreme Gradient Boosting Regressor**
+            """)
+        st.write("""
+        ### **Multivariate Regression Method**
         """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
+    elif modelSelect_name == "Gaussian Process Regressor":
+        st.write("""
+            ## **Gaussian Process Regressor**
+            """)
+        st.write("""
+        ### **Multivariate Regression Method**
         """)
-    RegressorModels(modelSelect_name)
+        RegressorModels(modelSelect_name)
 
-elif modelSelect_name == "Elastic Net Regressor":
-    st.write("""
-        ## **Elastic Net Regression Model**
+    elif modelSelect_name == "Stochastic Gradient Descent Regressor":
+        st.write("""
+            ## **Stochastic Gradient Descent Regressor**
+            """)
+        st.write("""
+        ### **Multivariate Regression Method**
         """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "K-Nearest Neighbors Regressor":
+        st.write("""
+            ## **K-Nearest Neighbors Regressor**
+            """)
 
-elif modelSelect_name == "Lasso Regressor":
-    st.write("""
-        ## **Lasso Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Light Gradient Boosting Machine Regressor":
+        st.write("""
+            ## **Light Gradient Boosting Machine Regressor**
+            """)
 
-elif modelSelect_name == "Ridge Regressor":
-    st.write("""
-        ## **Ridge Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "CatBoost Regressor":
+        st.write("""
+            ## **CatBoost Regressor**
+            """)
 
-elif modelSelect_name == "Huber Regressor":
-    st.write("""
-        ## **Huber Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "AdaBoost Regressor":
+        st.write("""
+            ## **AdaBoost Regressor**
+            """)
 
-elif modelSelect_name == "Kernel Ridge Regressor":
-    st.write("""
-        ## **Kernel Ridge Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Bagging Regressor":
+        st.write("""
+            ## **Bagging Regressor**
+            """)
 
-elif modelSelect_name == "Tweedie Regressor":
-    st.write("""
-        ## **Tweedie Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Passive Aggressive Regressor":
+        st.write("""
+            ## **Passive Aggressive Regressor**
+            """)
 
-elif modelSelect_name == "TheilSen Regressor":
-    st.write("""
-        ## **TheilSen Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Elastic Net Regressor":
+        st.write("""
+            ## **Elastic Net Regressor**
+            """)
 
-elif modelSelect_name == "Orthogonal Matching Pursuit Regressor":
-    st.write("""
-        ## **Orthogonal Matching Pursuit Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Lasso Regressor":
+        st.write("""
+            ## **Lasso Regressor**
+            """)
 
-elif modelSelect_name == "Histogram Gradient Boosting Regressor":
-    st.write("""
-        ## **Histogram Gradient Boosting Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Ridge Regressor":
+        st.write("""
+            ## **Ridge Regressor**
+            """)
 
-elif modelSelect_name == "Least Angle Regressor":
-    st.write("""
-        ## **Least Angle Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Huber Regressor":
+        st.write("""
+            ## **Huber Regressor**
+            """)
 
-elif modelSelect_name == "Lasso Least Angle Regressor":
-    st.write("""
-        ## **Lasso Least Angle Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Kernel Ridge Regressor":
+        st.write("""
+            ## **Kernel Ridge Regressor**
+            """)
 
-elif modelSelect_name == "Automatic Relevance Determination Regressor":
-    st.write("""
-        ## **Automatic Relevance Determination Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Tweedie Regressor":
+        st.write("""
+            ## **Tweedie Regressor**
+            """)
 
-elif modelSelect_name == "Random Sample Consensus Regressor":
-    st.write("""
-        ## **Random Sample Consensus Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "TheilSen Regressor":
+        st.write("""
+            ## **TheilSen Regressor**
+            """)
 
-elif modelSelect_name == "Perceptron Regressor":
-    st.write("""
-        ## **Perceptron Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Orthogonal Matching Pursuit Regressor":
+        st.write("""
+            ## **Orthogonal Matching Pursuit Regressor**
+            """)
 
-elif modelSelect_name == "Natural Gradient Boosting Regressor":
-    st.write("""
-        ## **Natural Gradient Boosting Regression Model**
-        """)
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
-    st.write("""
-        ### **Multiple Regression Method**
-        """)
-    RegressorModels(modelSelect_name)
+    elif modelSelect_name == "Histogram Gradient Boosting Regressor":
+        st.write("""
+            ## **Histogram Gradient Boosting Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
+
+    elif modelSelect_name == "Least Angle Regressor":
+        st.write("""
+            ## **Least Angle Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
+
+    elif modelSelect_name == "Lasso Least Angle Regressor":
+        st.write("""
+            ## **Lasso Least Angle Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
+
+    elif modelSelect_name == "Automatic Relevance Determination Regressor":
+        st.write("""
+            ## **Automatic Relevance Determination Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
+
+    elif modelSelect_name == "Random Sample Consensus Regressor":
+        st.write("""
+            ## **Random Sample Consensus Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
+
+    elif modelSelect_name == "Perceptron Regressor":
+        st.write("""
+            ## **Perceptron Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
+
+    elif modelSelect_name == "Natural Gradient Boosting Regressor":
+        st.write("""
+            ## **Natural Gradient Boosting Regressor**
+            """)
+
+        st.write("""
+            ### **Multiple Regression Method**
+            """)
+        RegressorModels(modelSelect_name)
 
 #  CLASSIFICATION CASES
-elif modelSelect_name == "Support Vector Machines Classifier":
-    st.write("""
-        ## **Support Vector Machines Classification Model**
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-    """)
-    ClassifierModels(modelSelect_name)
-
-
-elif modelSelect_name == "Logistic Regression Classifier":
-    st.write("""
-        ## **Logistic Regression Classification Model**
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Naive Bayes Classifier":
-    st.write("""
-        ## **Naive Bayes Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Decision Tree Classifier":
-    st.write("""
-        ## **Decision Tree Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Extra Trees Classifier":
-    st.write("""
-        ## **Extra Trees Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-
-elif modelSelect_name == "K-Nearest Neighbors Classifier":
-    st.write("""
-        ## **K-Nearest Neighbors Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Random Forest Classifier":
-    st.write("""
-        ## **Random Forest Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Gradient Boosting Classifier":
-    st.write("""
-        ## **Gradient Boosting Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Extreme Gradient Boosting Classifier":
-    st.write("""
-        ## **Extreme Gradient Boosting Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Gaussian Process Classifier":
-    st.write("""
-        ## **Gaussian Process Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Stochastic Gradient Descent Classifier":
-    st.write("""
-        ## **Stochastic Gradient Descent Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Light Gradient Boosting Machine Classifier":
-    st.write("""
-        ## **Light Gradient Boosting Machine Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "CatBoost Classifier":
-    st.write("""
-        ## **CastBoost Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "AdaBoost Classifier":
-    st.write("""
-        ## **AdaBoost Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Bagging Classifier":
-    st.write("""
-        ## **Bagging Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-
-elif modelSelect_name == "Passive Aggressive Classifier":
-    st.write("""
-        ## **Passive Aggressive Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Linear Discriminant Analysis Classifier":
-    st.write("""
-        ## **Linear Discriminant Analysis Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Quadratic Discriminant Analysis Classifier":
-    st.write("""
-        ## **Quadratic Discriminant Analysis Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Linear Support Vector Machine Classifier":
-    st.write("""
-        ## **Linear Support Vector Machine Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Ridge Classifier":
-    st.write("""
-        ## **Ridge Classifier Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Natural Gradient Boosting Classifier":
-    st.write("""
-        ## **Natural Gradient Boosting Classification Model**
-
-        """)
-    st.write("""
-    ### **Multivariate Classification Method**
-
-    """)
-    ClassifierModels(modelSelect_name)
-
-elif modelSelect_name == "Polynomial Regression":
-    st.write("""
-        ## **Polynomial Regression Model**
-
-        """)
-    st.write("""
-    ### **Single-Variable Regression Method**
-
-    """)
-    PRM()
-
-# This model is included and more complete in RegressorModels.py
-# and it was left in the code for reference only
-
-elif modelSelect_name == "Random Forest Regression":
-    st.write("""
-        ## **Multiple Random Forest Regression Model**
-
-        """)
-    st.write("""
-    ### **Multiple Variable Regression Method**
-
-    """)
-    MRFR()
-
-elif modelSelect_name == "Neural Network Regression":
-
-    modelSelect_Type = "Neural Network Regression"
-    st.write("""
-        ## **Multi-Layer Perceptron Regressor Model**
-
-        """)
-
-    st.write("""
-    ### **Neural Network (supervised) Regression Method**
-
-    """)
-    MLPR()
-
-elif modelSelect_name == "Neural Network Classification":
-    modelSelect_Type = "Neural Network Classification"
-    st.write("""
-        ## **Multi-Layer Perceptron Classification Model**
-
-        """)
-    st.write("""
-    ### **Neural Network (supervised) Classification Method**
-
-    """)
-    MLPC()
-
-
-elif modelSelect_name == "K-Means Clustering":
-    st.write("""
-        ## **K-Means Clustering Model**
-
-        """)
-
-    st.write("""
-    ### **Unsupervised Learning Method**
-
-    """)
-    ClusteringModels(modelSelect_name)
-
-
-elif modelSelect_name == "Hierarchical Clustering":
-    st.write("""
-        ## **Hierarchical Clustering Model**
-
-        """)
-
-    st.write("""
-    ### **Unsupervised Learning Method**
-
-    """)
-    ClusteringModels(modelSelect_name)
-
-elif modelSelect_name == "Spectral Clustering":
-    st.write("""
-        ## **Spectral Clustering Model**
-
-        """)
-
-    st.write("""
-    ### **Unsupervised Learning Method**
-
-    """)
-    ClusteringModels(modelSelect_name)
-
-elif modelSelect_name == "Quick Comparison Classifiers":
-    st.write("""
-        ## **Quick Comparison Classifiers**
-
-        """)
-    QuickClassifiers()
-
-elif modelSelect_name == "Quick Comparison Regressors":
-    st.write("""
-        ## **Quick Comparison Regressors**
-
-        """)
-    QuickRegressors()
-
-elif modelSelect_name == "Bigdata Analysis":
-
-    SelectMethod = st.sidebar.selectbox("Select a subcategory", ("Regression",
-                                                                 "Classification", "Clustering", "Regressor Ranking", "Classifier Ranking"))
-
-    if SelectMethod == "Regression":
+if OptimizeBigData == False and CategorySelect_name == 'Classification':
+    if modelSelect_name == "Support Vector Machines Classifier":
         st.write("""
-        ## **Bigdata - Regression Analysis**
-
-        """)
-        selectModelRegressor = st.sidebar.selectbox("Select the algorithm", ("Linear Regressor", "Generalized Linear Regressor", "Decision Tree Regressor",
-                                                                       "Random Forest Regressor", "Gradient-Boosted Tree Regressor"))
-
-        if selectModelRegressor == "Linear Regressor":
-
-            st.write("""
-                        ### **Linear Regressor Model**
-
-                        """)
-
-        elif selectModelRegressor == "Generalized Linear Regressor":
-            st.write("""
-                        ### **Generalized Linear Regressor Model**
-
-                        """)
-
-        elif selectModelRegressor == "Decision Tree Regressor":
-            st.write("""
-                        ### **Decision Tree Regressor Model**
-
-                        """)
-
-        elif selectModelRegressor == "Random Forest Regressor":
-            st.write("""
-                        ### **Random Forest Regressor Model**
-
-                        """)
-
-        elif selectModelRegressor == "Gradient-Boosted Tree Regressor":
-            st.write("""
-                        ### **Gradient-Boosted Tree Regressor Model**
-
-                        """)
-
-        #RegressorsPyspark(selectModelRegressor)
-
-    elif SelectMethod == "Classification":
+            ## **Support Vector Machines Classifier**
+            """)
         st.write("""
-        ## **Bigdata - Classification Analysis**
+        ### **Multivariate Classification Method**
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Logistic Regression Classifier":
+        st.write("""
+            ## **Logistic Regression Classifier**
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
 
         """)
-        selectModelClassifier = st.sidebar.selectbox("Select the algorithm", ("Decision Tree Classifier", "Logistic Regression Classifier",
-                                                                        "Random Forest Classifier", "Navy Bayes Classifier"))
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Naive Bayes Classifier":
+        st.write("""
+            ## **Naive Bayes Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Decision Tree Classifier":
+        st.write("""
+            ## **Decision Tree Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Extra Trees Classifier":
+        st.write("""
+            ## **Extra Trees Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "K-Nearest Neighbors Classifier":
+        st.write("""
+            ## **K-Nearest Neighbors Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Random Forest Classifier":
+        st.write("""
+            ## **Random Forest Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Gradient Boosting Classifier":
+        st.write("""
+            ## **Gradient Boosting Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Extreme Gradient Boosting Classifier":
+        st.write("""
+            ## **Extreme Gradient Boosting Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Gaussian Process Classifier":
+        st.write("""
+            ## **Gaussian Process Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Stochastic Gradient Descent Classifier":
+        st.write("""
+            ## **Stochastic Gradient Descent Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Light Gradient Boosting Machine Classifier":
+        st.write("""
+            ## **Light Gradient Boosting Machine Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "CatBoost Classifier":
+        st.write("""
+            ## **CastBoost Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "AdaBoost Classifier":
+        st.write("""
+            ## **AdaBoost Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Bagging Classifier":
+        st.write("""
+            ## **Bagging Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Passive Aggressive Classifier":
+        st.write("""
+            ## **Passive Aggressive Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Linear Discriminant Analysis Classifier":
+        st.write("""
+            ## **Linear Discriminant Analysis Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Quadratic Discriminant Analysis Classifier":
+        st.write("""
+            ## **Quadratic Discriminant Analysis Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Linear Support Vector Machine Classifier":
+        st.write("""
+            ## **Linear Support Vector Machine Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Ridge Classifier":
+        st.write("""
+            ## **Ridge Classifier Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+    elif modelSelect_name == "Natural Gradient Boosting Classifier":
+        st.write("""
+            ## **Natural Gradient Boosting Classifier**
+
+            """)
+        st.write("""
+        ### **Multivariate Classification Method**
+
+        """)
+        ClassifierModels(modelSelect_name)
+
+if OptimizeBigData == False and CategorySelect_name == 'Regression':
+    if modelSelect_name == "Polynomial Regression":
+        st.write("""
+            ## **Polynomial Regression**
+
+            """)
+        st.write("""
+        ### **Single-Variable Regression Method**
+
+        """)
+        PRM()
+
+    # This model is included and more complete in RegressorModels.py
+    # and it was left in the code for reference only
+
+    elif modelSelect_name == "Random Forest Regression":
+        st.write("""
+            ## **Multiple Random Forest Regression**
+
+            """)
+        st.write("""
+        ### **Multiple Variable Regression Method**
+
+        """)
+        MRFR()
+
+    elif modelSelect_name == "Neural Network Regression":
+
+        modelSelect_Type = "Neural Network Regression"
+        st.write("""
+            ## **Multi-Layer Perceptron Regressor**
+
+            """)
+
+        st.write("""
+        ### **Neural Network (supervised) Regression Method**
+
+        """)
+        MLPR()
+
+if OptimizeBigData == False and CategorySelect_name == 'Classification':
+    if modelSelect_name == "Neural Network Classification":
+        modelSelect_Type = "Neural Network Classification"
+        st.write("""
+            ## **Multi-Layer Perceptron Classification**
+
+            """)
+        st.write("""
+        ### **Neural Network (supervised) Classification Method**
+
+        """)
+        MLPC()
+
+if OptimizeBigData == False and CategorySelect_name == 'Clustering':
+    if modelSelect_name == "K-Means Clustering":
+        st.write("""
+            ## **K-Means Clustering**
+
+            """)
+
+        st.write("""
+        ### **Unsupervised Learning Method**
+
+        """)
+        ClusteringModels(modelSelect_name)
+
+    elif modelSelect_name == "Hierarchical Clustering":
+        st.write("""
+            ## **Hierarchical Clustering**
+
+            """)
+
+        st.write("""
+        ### **Unsupervised Learning Method**
+
+        """)
+        ClusteringModels(modelSelect_name)
+
+    elif modelSelect_name == "Spectral Clustering":
+        st.write("""
+            ## **Spectral Clustering**
+
+            """)
+
+        st.write("""
+        ### **Unsupervised Learning Method**
+
+        """)
+        ClusteringModels(modelSelect_name)
+
+if OptimizeBigData == False and CategorySelect_name == 'Ranking':
+
+    if modelSelect_name == "Quick Comparison Classifiers":
+        st.write("""
+            ## **Quick Comparison Classifiers**
+
+            """)
+        QuickClassifiers()
+
+if OptimizeBigData == False and CategorySelect_name == 'Ranking':
+    if modelSelect_name == "Quick Comparison Regressors":
+        st.write("""
+            ## **Quick Comparison Regressors**
+
+            """)
+        QuickRegressors()
+
+if OptimizeBigData == True and CategorySelect_name == 'Regression':
+    if CategorySelect_name == 'Regression':
+
+        if CategorySelect_name == 'Regression':
+            st.write("""
+            ## **Bigdata - Regression Analysis**
+
+            """)
+            selectModelRegressor = st.sidebar.selectbox("Select an algorithm", ("Linear Regressor", "Generalized Linear Regressor", "Decision Tree Regressor",
+                                                                                "Random Forest Regressor", "Gradient-Boosted Tree Regressor"))
+
+            if selectModelRegressor == "Linear Regressor":
+
+                st.write("""
+                            ### **Linear Regressor**
+
+                            """)
+
+            elif selectModelRegressor == "Generalized Linear Regressor":
+                st.write("""
+                            ### **Generalized Linear Regressor**
+
+                            """)
+
+            elif selectModelRegressor == "Decision Tree Regressor":
+                st.write("""
+                            ### **Decision Tree Regressor**
+
+                            """)
+
+            elif selectModelRegressor == "Random Forest Regressor":
+                st.write("""
+                            ### **Random Forest Regressor**
+
+                            """)
+
+            elif selectModelRegressor == "Gradient-Boosted Tree Regressor":
+                st.write("""
+                            ### **Gradient-Boosted Tree Regressor**
+
+                            """)
+
+            RegressorsPyspark(selectModelRegressor)
+
+if OptimizeBigData == True and CategorySelect_name == 'Classification':
+
+    if CategorySelect_name == 'Classification':
+        st.write("""
+            ## **Bigdata - Classification Analysis**
+
+            """)
+        selectModelClassifier = st.sidebar.selectbox("Select an algorithm", ("Decision Tree Classifier", "Logistic Regression Classifier",
+                                                                             "Random Forest Classifier", "Navy Bayes Classifier"))
 
         if selectModelClassifier == "Decision Tree Classifier":
 
             st.write("""
-                        ### **Decision Tree Classifier Model**
+                            ### **Decision Tree Classifier**
 
-                        """)
+                            """)
 
         elif selectModelClassifier == "Logistic Regression Classifier":
 
             st.write("""
-                        ### **Logistic Regression Classifier Model**
+                            ### **Logistic Regression Classifier**
 
-                        """)
+                            """)
 
         elif selectModelClassifier == "Random Forest Classifier":
 
             st.write("""
-                        ### **Random Forest Classifier Model**
+                            ### **Random Forest Classifier**
 
-                        """)
+                            """)
 
         elif selectModelClassifier == "Navy Bayes Classifier":
 
             st.write("""
-                        ### **Navy Bayes Classifier Model**
+                            ### **Navy Bayes Classifier**
 
-                        """)
+                            """)
 
-        #ClassifiersPyspark(selectModelClassifier)
+        ClassifiersPyspark(selectModelClassifier)
 
-    elif SelectMethod == "Regressor Ranking" or SelectMethod == "Classifier Ranking":
+if OptimizeBigData == True and CategorySelect_name == 'Ranking':
 
-        if SelectMethod == "Regressor Ranking":
+    if modelSelect_name == "Quick Comparison Regressors":
+
+        if modelSelect_name == "Quick Comparison Regressors":
             st.write("""
-        ## **Bigdata - Regressor Ranking Analysis**
+            ## **Bigdata - Regressor Ranking Analysis**
 
-        """)
-        elif SelectMethod == "Classifier Ranking":
-            st.write("""
-        ## **Bigdata - Classifier Ranking Analysis**
+            """)
+            SelectMethod = 'Regressor Ranking'
 
-        """)
-
-        #Pyspark(SelectMethod)
-
-    elif SelectMethod == "Clustering":
+    elif modelSelect_name == "Quick Comparison Classifiers":
         st.write("""
-        ## **Bigdata - Clustering Analysis**
+            ## **Bigdata - Classifier Ranking Analysis**
 
-        """)
+            """)
+        SelectMethod = 'Classifier Ranking'
+
+    Pyspark(SelectMethod)
+
+if OptimizeBigData == True and CategorySelect_name == 'Clustering':
+    if CategorySelect_name == "Clustering":
+        st.write("""
+            ## **Bigdata - Clustering Analysis**
+
+            """)
         selectModelClustering = st.sidebar.selectbox(
-            "Select the algorithm", ("K-Means", "Gaussian Mixture"))
+            "Select an algorithm", ("K-Means", "Gaussian Mixture"))
 
         if selectModelClustering == "K-Means":
 
             st.write("""
-                        ### **K-Means Clustering Model**
+                            ### **K-Means Clustering**
 
-                        """)
+                            """)
 
         if selectModelClustering == "Gaussian Mixture":
 
             st.write("""
-                        ### **Gaussian Mixture Clustering Model**
+                            ### **Gaussian Mixture Clustering**
 
-                        """)
-        #ClusteringPyspark(selectModelClustering)
+                            """)
+        ClusteringPyspark(selectModelClustering)
 
 
-elif modelSelect_name == "Time Series":
-    st.write("""
-    ## **Time Series**
+if OptimizeBigData == False and CategorySelect_name == 'Time Series':
+    if modelSelect_name == "Time Series":
+        st.write("""
+        ## **Time Series**
 
-    """)
-    TimeSeries()
+        """)
+        TimeSeries()
 
-elif modelSelect_name == "Anomaly Detection":
-    st.write("""
-    ## **Anomaly Detection in Time Series**
+if OptimizeBigData == False and CategorySelect_name == 'Anomaly Detection':
+    if modelSelect_name == "Anomaly Detection":
+        st.write("""
+        ## **Anomaly Detection in Time Series**
 
-    """)
-    AnomalyDetection()
+        """)
+        AnomalyDetection()
