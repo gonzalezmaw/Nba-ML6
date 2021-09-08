@@ -25,7 +25,7 @@ def RFC():  # Random Forest Classifier
         st.sidebar.write("n estimators: ",  n_estimators)
 
         st.sidebar.info("""
-                    [Short summary of the applicability of the method or model]
+                    Classification is a set of supervised machine learning methods that approximate a mapping function from input variables to discrete output variables.  It is used to predict discrete categories or classes of given data points. (E.g.  spam detection in email service providers to classify an email to a spam or not spam).
                     """)
 
         uploaded_file = st.file_uploader("Choose a CSV file")
