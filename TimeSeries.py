@@ -113,24 +113,24 @@ def TimeSeries():
 
         # method = st.sidebar.selectbox("select a method", ('SARIMA', 'Prophet - Facebook', 'Regressors'))
         method = st.sidebar.selectbox(
-            "select a method", ('SARIMA', 'Prophet - Facebook'))
+            "Select an algorithm", ('SARIMA', 'Prophet - Facebook'))
 
         if method == "Prophet - Facebook":
             UncInt = st.sidebar.slider(
-                "select the confidence intervals", 0.50, 1.00, 0.80, 0.01)
+                "Select the confidence intervals", 0.50, 1.00, 0.80, 0.01)
             st.sidebar.write("confidence intervals: ", UncInt)
 
-            st.write("""### **Prophet - Facebook Model**""")
+            st.write("""### **Prophet - Facebook**""")
         elif method == "SARIMA":
             st.write(
-                """### **Seasonal Auto Regressive Integrated Moving Average (SARIMA) Model**""")
+                """### **Seasonal Auto Regressive Integrated Moving Average (SARIMA)**""")
 
         elif method == "Regressors":
             st.write(
                 """### **Regression Models**""")
 
         st.sidebar.info("""
-            [Short summary of the applicability of the method or model]
+            A time series is a sequence of discrete-time data that covers a continuous time interval.  The time series forecasting is used to predict future values based on previously observed ones. (E.g. weather forecasting).
             """)
 
         uploaded_file = st.file_uploader("Choose a CSV file")
