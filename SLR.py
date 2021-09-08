@@ -14,7 +14,7 @@ def SLR():  # Simple Linear Regression
         st.sidebar.write("Test size: ", parameter_test_size)
 
         st.sidebar.info("""
-        [Short summary of the applicability of the method or model]
+        Regression is a set of supervised machine learning methods that investigate the relationship between a dependent (target) variable and independent variable(s) (predictors). It is used to predict continuous, real-value quantities. (E.g.  predicting prices of a house given the features of the house like size and price).
         """)
         uploaded_file = st.file_uploader("Choose a CSV file")
         if uploaded_file is not None:
