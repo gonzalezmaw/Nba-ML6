@@ -31,7 +31,7 @@ def ClusteringModels(ClusteringSelectModel):
         st.sidebar.write("Clusters number: ", clusters_number)
 
         st.sidebar.info("""
-                                    [Short summary of the applicability of the method or model]
+                                    Clustering is a set of unsupervised machine learning methods that identify and group similar data points in larger datasets. It is used to divide data points into several groups such that each data point is more similar to data points in the same group and dissimilar to the data points in other groups. (E.g.  clustering different books based on topics and information).
                                     """)
 
         uploaded_file = st.file_uploader("Choose a CSV file")
