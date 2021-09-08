@@ -61,7 +61,7 @@ def QuickClassifiers():
         st.sidebar.write("Test size: ", parameter_test_size)
 
         st.sidebar.info("""
-                                [Short summary of the applicability of the method or model]
+                                Ranking is a set of machine learning methods that tries to rank a list of items based on their relevance in a particular task. It is used to predict an ordinal score of a document. (E.g. ranking pages on a search engine based on their relevance to a given query).
                                 """)
 
         uploaded_file = st.file_uploader("Choose a CSV file")
