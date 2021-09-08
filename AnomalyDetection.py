@@ -28,11 +28,11 @@ def mean_absolute_percentage_error(y_true, y_pred):
 def AnomalyDetection():
 
     method = st.sidebar.selectbox(
-        "select a method", ('Simple', 'SARIMA', 'Prophet - Facebook'))
+        "Select an algorithm", ('Simple', 'SARIMA', 'Prophet - Facebook'))
 
     if method == "Simple":
         st.write(
-            """### **Simple Model**""")
+            """### **Simple**""")
         wind = st.sidebar.number_input(
             "Window:", min_value=5, value=15, step=1)
         sigma = st.sidebar.number_input(
@@ -40,13 +40,13 @@ def AnomalyDetection():
 
     elif method == "Prophet - Facebook":
         UncInt = st.sidebar.slider(
-            "select the confidence intervals", 0.50, 1.00, 0.95, 0.01)
+            "Select the confidence intervals", 0.50, 1.00, 0.95, 0.01)
         st.sidebar.write("confidence intervals: ", UncInt)
 
-        st.write("""### **Prophet - Facebook Model**""")
+        st.write("""### **Prophet - Facebook**""")
     elif method == "SARIMA":
         st.write(
-            """### **Seasonal Auto Regressive Integrated Moving Average (SARIMA) Model**""")
+            """### **Seasonal Auto Regressive Integrated Moving Average (SARIMA)**""")
 
     st.sidebar.info("""
         [Short summary of the applicability of the method or model]
