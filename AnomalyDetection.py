@@ -49,7 +49,7 @@ def AnomalyDetection():
             """### **Seasonal Auto Regressive Integrated Moving Average (SARIMA)**""")
 
     st.sidebar.info("""
-        [Short summary of the applicability of the method or model]
+        Anomalies are patterns that are different from standard behavior in a data set. The anomaly detection is used to find the outliers of a dataset and any items that don’t belong. (E.g. spotting network intrusion - cybersecurity).
         """)
 
     uploaded_file = st.file_uploader("Choose a CSV file")
