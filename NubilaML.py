@@ -17,10 +17,10 @@ from QuickRegressors import QuickRegressors
 from ClassifierModels import ClassifierModels
 from RegressorModels import RegressorModels
 
-from Pyspark import Pyspark
-from RegressorsPyspark import RegressorsPyspark
-from ClassifiersPyspark import ClassifiersPyspark
-from ClusteringPyspark import ClusteringPyspark
+#from Pyspark import Pyspark
+#from RegressorsPyspark import RegressorsPyspark
+#from ClassifiersPyspark import ClassifiersPyspark
+#from ClusteringPyspark import ClusteringPyspark
 from TimeSeries import TimeSeries
 from AnomalyDetection import AnomalyDetection
 
@@ -824,7 +824,7 @@ if OptimizeBigData == True and CategorySelect_name == 'Regression':
 
                             """)
 
-            RegressorsPyspark(selectModelRegressor)
+            #RegressorsPyspark(selectModelRegressor)
 
 if OptimizeBigData == True and CategorySelect_name == 'Classification':
 
@@ -864,7 +864,7 @@ if OptimizeBigData == True and CategorySelect_name == 'Classification':
 
                             """)
 
-        ClassifiersPyspark(selectModelClassifier)
+        #ClassifiersPyspark(selectModelClassifier)
 
 if OptimizeBigData == True and CategorySelect_name == 'Ranking':
 
@@ -884,7 +884,7 @@ if OptimizeBigData == True and CategorySelect_name == 'Ranking':
             """)
         SelectMethod = 'Classifier Ranking'
 
-    Pyspark(SelectMethod)
+    #Pyspark(SelectMethod)
 
 if OptimizeBigData == True and CategorySelect_name == 'Clustering':
     if CategorySelect_name == "Clustering":
@@ -908,7 +908,7 @@ if OptimizeBigData == True and CategorySelect_name == 'Clustering':
                             ### **Gaussian Mixture Clustering**
 
                             """)
-        ClusteringPyspark(selectModelClustering)
+        #ClusteringPyspark(selectModelClustering)
 
 
 if OptimizeBigData == False and CategorySelect_name == 'Time Series':
